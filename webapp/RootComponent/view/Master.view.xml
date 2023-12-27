@@ -1,0 +1,40 @@
+<mvc:View
+    controllerName="fcl/EA/EA-System.RootComponent.controller.Master"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	
+	xmlns:fiori="sap.ui.webc.fiori"
+	height="100%">
+	<Button text=" " icon="sap-icon://menu2"  press="handleClick" />
+	<fiori:SideNavigation id="sideNavigation" click="handleClickNav">
+		<fiori:header text="Work" />
+	
+
+
+		<fiori:SideNavigationItem icon="home" text="Home" click="handleClickNav" />
+		<fiori:SideNavigationItem icon="sap-icon://action-settings" text="System Data">
+		<fiori:items>
+			<fiori:SideNavigationSubItem text="Systems" icon="sap-icon://combine" click="onPressSystems" />
+			
+		</fiori:items>
+	  </fiori:SideNavigationItem>
+		<fiori:SideNavigationItem icon="sap-icon://action-settings" text="System Value Data">
+			<fiori:items>
+				<fiori:SideNavigationSubItem text="System Group" icon="sap-icon://combine" click="onPressGroup" />
+				<fiori:SideNavigationSubItem text="System Master" icon ="sap-icon://BusinessSuiteInAppSymbols/icon-4x4-grid-layout" click="onPressDataSystem" />
+			</fiori:items>
+		</fiori:SideNavigationItem>
+		<fiori:SideNavigationItem icon="locate-me" text="Locations" />
+		<fiori:SideNavigationItem icon="calendar" text="Events">
+			<fiori:items>
+				<fiori:SideNavigationSubItem text="Local" />
+				<fiori:SideNavigationSubItem text="Other" />
+			</fiori:items>
+		</fiori:SideNavigationItem>
+		<fiori:fixedItems>
+			<fiori:SideNavigationItem icon="chain-link" text="Useful Links" />
+			<fiori:SideNavigationItem icon="history" text="History" />
+		</fiori:fixedItems>
+	</fiori:SideNavigation>
+
+</mvc:View>

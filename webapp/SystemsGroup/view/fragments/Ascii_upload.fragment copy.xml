@@ -1,0 +1,57 @@
+<c:FragmentDefinition
+	xmlns:c="sap.ui.core"
+	xmlns="sap.m" 
+    xmlns:u="sap.ui.unified" 
+    xmlns:l="sap.ui.layout.form">
+	
+
+    <Page id="ascii_upload" title="File Updload (Ascii)">
+	<content>
+		<l:SimpleForm editable="true">
+		 <l:content>
+		  <Label text="File Name">
+		  </Label>
+		<VBox>
+		 <u:FileUploader id="idfileUploader" width="50%"
+		    sameFilenameAllowed="true" buttonText="" fileType="CSV"
+		    placeholder="Choose a CSV file" style="Emphasized">
+		</u:FileUploader>
+		<Button text="Upload" press="onUpload"></Button>
+		</VBox>
+		</l:content>
+		</l:SimpleForm>
+
+		<Table id="idTable" items="{/}">
+		<items>
+		    <ColumnListItem>
+			<cells>
+			<Text text="{ID}"></Text>
+			<Text text="{Systeme}"></Text>
+			<Text text="{SystemeID}"></Text>
+			<Text text="{S4Prio}"></Text>
+			<Text text="{Systemdomain}"></Text>
+			</cells>
+		   </ColumnListItem>
+                </items>
+	        <columns>
+			<Column>
+			<Text text="ID"></Text>
+			</Column>
+			<Column>
+			<Text text="systeme"></Text>
+			</Column>
+			<Column>
+			<Text text="SystemID"></Text>
+			</Column>
+		        <Column>
+			<Text text="s4Prio"></Text>
+			</Column>
+			<Column>
+			<Text text="Systemdomain"></Text>
+			</Column>
+		</columns>
+		</Table>
+		</content>
+	</Page>
+
+</c:FragmentDefinition>

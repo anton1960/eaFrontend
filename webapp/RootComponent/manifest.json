@@ -1,0 +1,155 @@
+{
+  "_version": "1.12.0",
+  "sap.app": {
+    "id": "fcl/EA/EA-System.RootComponent",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "dataSources": {
+      "systemRemote": {
+      "uri": "/v2/db-srv/v1/",
+      "type": "OData",
+      "settings": {
+        "odataVersion": "2.0"
+      }
+      }
+    },
+    "ach": "ach"
+  },
+
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "fcl/EA/EA-System.RootComponent.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+    "dependencies": {
+      "minUI5Version": "1.60.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "fcl/EA/EA-System.RootComponent.i18n.i18n"
+        }
+      },
+      "": {
+				"dataSource": "systemRemote",
+        "type":"sap.ui.model.odata.ODataModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"metadataUrlParams": {
+						"sap-documentation": "heading"
+					}
+				}
+
+			  }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "fcl/EA/EA-System.RootComponent.view",
+        "controlId": "app",
+        "async": true
+      },
+      "routes": [
+        {
+          "pattern": "component1/:viewPattern:",
+          "name": "sub1ComponentView",
+          "target": ["masterView", "component1View"]
+        },
+        {
+          "pattern": "component2/:viewPattern:",
+          "name": "sub2ComponentView",
+          "target": ["masterView", "component2View"]
+        },
+
+        {
+          "pattern": "Systems/:viewPattern:",
+          "name": "SystemlistView",
+          "target": ["masterView", "systemlistview"]
+        }
+        ,
+
+        {
+          "pattern": "SystemsGroup/:viewPattern:",
+          "name": "SystemGroupView",
+          "target": ["masterView", "systemgroupview"]
+        }
+
+        
+      ],
+      "targets": {
+        "masterView": {
+          "viewName": "Master",
+          "viewId": "master",
+          "title": "Navigation List",
+          "controlAggregation": "masterPages"
+        },
+        "component1View": {
+          "viewName": "Component1View",
+          "viewId": "component1View",
+          "controlAggregation": "detailPages"
+        },
+        "component2View": {
+          "viewName": "Component2View",
+          "viewId":   "component2View",
+          "controlAggregation": "detailPages"
+        },
+        "systemlistview": {
+          "viewName": "SystemListView",
+          "viewId":   "SystemListView",
+          "controlAggregation": "detailPages"
+        },
+        "systemgroupview": {
+          "viewName": "SystemGroupView",
+          "viewId":   "SystemGroupView",
+          "controlAggregation": "detailPages"
+        }
+       
+      }
+
+    }
+  }
+}

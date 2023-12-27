@@ -1,0 +1,13 @@
+<mvc:View
+	controllerName="fcl.EA.EA-System.SystemsGroup.controller.SystemEdit"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:smartfield="sap.ui.comp.smartfield"
+	xmlns:core="sap.ui.core"
+	xmlns:smartform="sap.ui.comp.smartform"
+	>
+	<core:Fragment
+           fragmentName="fcl/EA/EA-System.SystemsGroup/view/fragments/Edit_system" type="XML"/>
+	
+</mvc:View>

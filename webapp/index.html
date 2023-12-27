@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.1" />
+    <title>EC System Management</title>
+
+    <script
+      id="sap-ui-bootstrap"
+      src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+      
+      data-sap-ui-resourceroots='{
+			"fcl/EA/EA-System": "./"
+		}'
+      data-sap-ui-oninit="module:fcl/EA/EA-System/runner"
+      data-sap-ui-compatVersion="edge"
+      data-sap-ui-async="true"
+      data-sap-ui-frameOptions="trusted"
+      data-sap-ui-theme='sap_fiori_3'
+			data-sap-ui-libs='sap.ui.webc.main'
+      data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+    ></script>
+  </head>
+
+  <body class="sapUiBody">
+    <div id="content"></div>
+  </body>
+</html>

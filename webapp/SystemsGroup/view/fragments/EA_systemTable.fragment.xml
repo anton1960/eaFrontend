@@ -1,0 +1,105 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartMultiInput="sap.ui.comp.smartmultiinput"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	
+>
+
+      <Page
+			id="ea_system"
+			title="EC Systems"
+			navButtonPress=".onPressDetailBack"
+			backgroundDesign= "Solid">
+			
+			<content>
+				
+				<VBox fitContainer="true">
+				
+
+					<smartFilterBar:SmartFilterBar id="smartFilterEA_System" entitySet="EA_System" persistencyKey="SmartFilter_Explored" basicSearchFieldName="Systeme" enableBasicSearch="true">
+				
+
+
+					<smartFilterBar:controlConfiguration>
+							<smartFilterBar:ControlConfiguration key="SystemID">
+								<smartFilterBar:defaultFilterValues>
+								</smartFilterBar:defaultFilterValues>
+							</smartFilterBar:ControlConfiguration>
+							<smartFilterBar:ControlConfiguration key="ID">
+								<smartFilterBar:defaultFilterValues>
+						</smartFilterBar:defaultFilterValues>
+							</smartFilterBar:ControlConfiguration>
+						</smartFilterBar:controlConfiguration>
+					</smartFilterBar:SmartFilterBar>
+					<smartTable:SmartTable id="EA_Systemtable" 
+							entitySet="EA_System" 
+							custom:useSmartToggle="true" 
+							editTogglable="true"
+							smartFilterId="smartFilterEA_System" 
+							tableType="Table" 
+							custom:useSmartField="true" 
+							useExportToExcel="true" 
+							beforeExport="onBeforeExport" 
+							useVariantManagement="true" 
+							useTablePersonalisation="true" 
+							header="Systems " 
+							initiallyVisibleFields="SystemID,Systeme,SystemDomain,System_Group,SystemShortName,Status,S4Prio,vendor,ID" 
+							showRowCount="true" 
+							persistencyKey="SmartTableAnalytical_Explored" 
+							enableAutoBinding="true" 
+							demandPopin="true" 
+							showDetailsButton="true"
+							class="sapUiResponsiveContentPadding" 
+							beforeRebindTable="onBeforeRebind"
+							enableAutoColumnWidth="true"
+							selectionChange="onRowSelectionChange" 
+							
+							 width="100%"
+							 height="80%">
+					
+			            	 <Table id="innerTable" sticky="ColumnHeaders,HeaderToolbar"  selectionChange="onRowSelectionChange" mode="SingleSelectMaster"> 
+						
+								<columns>
+									<Column hAlign="Begin">
+										<customData>
+											<core:CustomData key="p13nData"
+												value='\{"columnKey": "Dmbtr", "maxLength": "5","columnIndex":"4", "leadingProperty": "Dmbtr", "sortProperty": "Dmbtr", "autoColumnWidth": \{"gap": -4} }' />
+										</customData>
+										<Text text="aa" />
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Text text="{Dmbtr}" />
+										</cells>
+									</ColumnListItem>
+								</items>
+
+							 </Table>
+							  
+					
+					<smartTable:layoutData>
+							<FlexItemData growFactor="1" baseSize="0%"/>
+					</smartTable:layoutData>
+					</smartTable:SmartTable>
+				  </VBox>
+				 
+			</content>
+			<footer>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button id="_EA_Systemtable_save"   icon="sap-icon://save"       class="mySuperRedButton"     text="save" press="onsavePress"  />
+					<Button id="_EA_Systemtable_remove" icon="sap-icon://clear-all" text="remove" press="onRemovePress" />
+					<Button id="_EA_Systemtable_new"   icon="sap-icon://add"        text="new" press="onNewpressed" />
+				</Toolbar>
+			</footer>
+		</Page>
+		
+</c:FragmentDefinition>

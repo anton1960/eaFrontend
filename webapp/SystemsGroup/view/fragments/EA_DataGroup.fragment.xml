@@ -1,0 +1,74 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	
+>
+<Page
+		id="dataGroup"
+		title="System Data Group"
+		backgroundDesign= "Solid"
+		showNavButton="true"
+		navButtonPress=".onPressDetailBack">
+		<content>
+			<VBox fitContainer="true">
+					 <smartFilterBar:SmartFilterBar id="smartFilterBarDataGroup" entitySet="EA_Data_Group" persistencyKey="SmartFilter_Explored" basicSearchFieldName="Data_Group" enableBasicSearch="true">
+					<smartFilterBar:controlConfiguration>
+						<smartFilterBar:ControlConfiguration key="ID">
+						</smartFilterBar:ControlConfiguration>
+						<smartFilterBar:ControlConfiguration key="Data_Group">
+						</smartFilterBar:ControlConfiguration>
+					</smartFilterBar:controlConfiguration>
+					<smartFilterBar:layoutData>
+						<FlexItemData shrinkFactor="0"/>
+					</smartFilterBar:layoutData>
+				</smartFilterBar:SmartFilterBar>
+
+				<smartTable:SmartTable id="datagrouptable" 
+						entitySet="EA_Data_Group" 
+						custom:useSmartToggle="true" 
+						editTogglable="true"
+						smartFilterId="smartFilterBarDataGroup" 
+						tableType="Table" 
+						custom:useSmartField="true" 
+						useExportToExcel="true" 
+						beforeExport="onBeforeExport" 
+						useVariantManagement="true" 
+						useTablePersonalisation="true" 
+						header="Data Group Items" 
+						initiallyVisibleFields="ID,Data_Group,Description" 
+						showRowCount="true" 
+						persistencyKey="SmartTableAnalytical_Explored" 
+						enableAutoBinding="true" 
+						demandPopin="true" 
+						class="sapUiResponsiveContentPadding" 
+						enableAutoColumnWidth="true"
+						 width="100%"
+					  height="80%">
+					<smartTable:layoutData>
+						<FlexItemData growFactor="1" baseSize="0%"/>
+					</smartTable:layoutData>
+					<smartTable:customToolbar>
+						<OverflowToolbar width="90%" id="toolbar2">
+							<content>
+								<Button id="savepressgroup" text="save" press="onsavePress" />
+							</content>
+						</OverflowToolbar>
+					</smartTable:customToolbar>
+				</smartTable:SmartTable>
+			</VBox>
+		</content>
+
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button id="_datagrouptable_save"  icon="sap-icon://save" text="save" press="onsavePress" />
+				<Button id="_datagrouptable_remove" text="remove" icon="sap-icon://clear-all" press="onRemovePress" />
+				<Button id="_datagrouptable_new" text="new" icon="sap-icon://add" press="onNewpressed" />
+			</Toolbar>
+		</footer> 
+	</Page>
+
+</c:FragmentDefinition>

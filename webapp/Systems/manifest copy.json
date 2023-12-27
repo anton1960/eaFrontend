@@ -1,0 +1,179 @@
+{
+  "_version": "1.12.0",
+  "sap.app": {
+    "id": "fcl/EA/EA-System.Systems",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "dataSources": {
+      "systemRemote": {
+        "uri": "V4/v2/odata/v4/system-odata",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "ach": "ach"
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "rootView": {
+      "viewName": "fcl/EA/EA-System.Systems.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+    "dependencies": {
+      "minUI5Version": "1.60.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "fcl/EA/EA-System.Systems.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "systemRemote",
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "metadataUrlParams": {
+            "sap-documentation": "heading"
+          }
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "type": "View",
+        "viewType": "XML",
+        "viewPath": "fcl/EA/EA-System.Systems.view",
+				"transition": "slide",
+
+        "controlId": "app",
+        "async": true
+      },
+      "routes": [
+        {
+          "pattern": ":layout:",
+          "name": "master",
+          "target": [
+            "master",
+            "detail"
+          ]
+        },
+        {
+          "pattern": "detail/{product}/{layout}",
+          "name": "detail",
+          "target": [
+            "master",
+            "detail"
+          ]
+        },
+        {
+          "pattern": "detail/{product}/detailDetail/{supplier}/{layout}",
+          "name": "detailDetail",
+          "target": [
+            "master",
+            "detail",
+            "detailDetail"
+          ]
+        },
+        {
+          "pattern": "Systems/Master",
+          "name": "master",
+          "target": "master"
+        },
+        {
+          "pattern": "Systems/Systemsystemgroup",
+          "name": "Systemsystemgroup1",
+          "target": "Systemsystemgroup"
+        },
+        {
+          "pattern": "systems/view1",
+          "name": "sub1view1",
+          "target": "targetSub1View1"
+        },
+        {
+          "pattern": "systems/view2",
+          "name": "sub1view2",
+          "target": "targetSub1View2"
+        }
+      ],
+      "targets": {
+        "targetSub1View1": {
+          "viewName": "Sub1View1",
+          "viewLevel": 1,
+          "viewId": "idSub1View1"
+        },
+        "targetSub1View2": {
+          "viewName": "Sub1View2",
+          "viewLevel": 2,
+          "viewId": "idSub1View2"
+        },
+        "Systemsystemgroup": {
+          "viewName": "Systemsystemgroup",
+          "viewLevel": 1,
+          "viewId": "Systemsystemgroup1"
+        },
+        "master": {
+          "name": "Master",
+          "controlAggregation": "beginColumnPages",
+          "viewId": "MasterViewID",
+          "viewName": "Master"
+        },
+        "detail": {
+          "name": "Detail",
+          "controlAggregation": "midColumnPages",
+          "viewId": "DetailViewID",
+          "viewName": "Detail"
+        },
+        "detailDetail": {
+          "name": "DetailDetail",
+          "controlAggregation": "endColumnPages",
+          "viewId": "DetailDetailID",
+          "viewName": "DetailDetail"
+        }
+      }
+    }
+  }
+}

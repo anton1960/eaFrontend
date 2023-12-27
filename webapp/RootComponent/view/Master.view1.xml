@@ -1,0 +1,49 @@
+<mvc:View
+    
+    controllerName="fcl/EA/EA-System.RootComponent.controller.Master"
+
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+	
+
+	<Page
+	   id="page"
+	   title="Enterprices Architecture">
+	
+		<content>
+	
+			<core:Icon
+            src="sap-icon://hello-world"
+            size="1rem"
+            class="myCustomButton"/>
+			<Button enabled="true" icon="sap-icon://process" class="myCustomButton"/> 
+			<List class = "list">
+				<StandardListItem type="Active" title="Sub1Component"  icon="sap-icon://action" class="myCustomButton" press="onPressNavSub1" />
+				<StandardListItem type="Active" title="Sub2Component"  icon="sap-icon://accept" class="icon-red" press="onPressNavSub2" />
+				<StandardListItem type="Active" title="Systems"        icon="sap-icon://wrench" press="onPressSystems" />
+				<StandardListItem type="Active" title="SystemGroup" press="onPressGroup" />
+				<CustomListItem>
+					<HBox>
+						<core:Icon size="2rem" src="sap-icon://attachment-photo" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
+						<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+							<Link text="SystemGroup" target="group" press="onPressGroup"/>
+							
+						</VBox>
+					</HBox>
+				</CustomListItem>
+				<CustomListItem>
+					<HBox>
+						<core:Icon size="2rem" src="sap-icon://attachment-photo" class="sapUiSmallMarginBegin  myCustomButton sapUiSmallMarginTopBottom" />
+						<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+							<Link text="SystemGroup" target="group" press="onPressGroup"/>
+							
+						</VBox>
+					</HBox>
+				</CustomListItem>
+				
+			</List>
+		</content>
+	</Page>
+
+</mvc:View>

@@ -1,0 +1,68 @@
+<c:FragmentDefinition
+xmlns="sap.m"
+xmlns:c="sap.ui.core"
+xmlns:mvc="sap.ui.core.mvc"
+xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+xmlns:smartTable="sap.ui.comp.smarttable"
+xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+<Page
+	id="lov_Domain"
+	title="System Domain /Comany"
+	backgroundDesign= "Solid"
+	showNavButton="true"
+	navButtonPress=".onPressDetailBack">
+	<content>
+		<VBox fitContainer="true">
+				 <smartFilterBar:SmartFilterBar id="smartFilterlov_Domain" entitySet="LOV_Domain" persistencyKey="SmartFilter_Explored" basicSearchFieldName="Domain" enableBasicSearch="true">
+				<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration key="ID">
+					</smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration key="Domain">
+					</smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:layoutData>
+					<FlexItemData shrinkFactor="0"/>
+				</smartFilterBar:layoutData>
+			</smartFilterBar:SmartFilterBar>
+
+			<smartTable:SmartTable id="lovDomaintable" 
+					entitySet="LOV_Domain" 
+					custom:useSmartToggle="true" 
+					editTogglable="true"
+					smartFilterId="smartFilterlov_Domain" 
+					tableType="Table" 
+					custom:useSmartField="true" 
+					useExportToExcel="true" 
+					beforeExport="onBeforeExport" 
+					useVariantManagement="true" 
+					useTablePersonalisation="true" 
+					header="List of Values (Domain) " 
+					initiallyVisibleFields="ID,Domain,Description" 
+					showRowCount="true" 
+					persistencyKey="SmartTableAnalytical_Explored" 
+					enableAutoBinding="true" 
+					demandPopin="true" 
+					class="sapUiResponsiveContentPadding" 
+					enableAutoColumnWidth="true"
+					customizeConfig="{'autoColumnWidth': {'*': {'min': 5, 'max': 10, 'gap': 2, 'truncateLabel': false}}}"
+					 width="100%"
+					 placeToolbarInTable="true"
+			         height="80%">
+        			<smartTable:layoutData>
+					<FlexItemData growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+			</smartTable:SmartTable>
+		</VBox>
+	</content>
+	<footer>
+		<Toolbar>
+			<ToolbarSpacer/>
+			<Button id="_lovDomaintable_save" text="save" icon="sap-icon://save" press="onsavePress" />
+			<Button id="_lovDomaintable_remove" text="remove" icon="sap-icon://clear-all" press="onRemovePress" />
+			<Button id="_lovDomaintable_press" text="new" icon="sap-icon://add"  press="onNewpressed" />
+		</Toolbar>
+	</footer>
+</Page>
+
+</c:FragmentDefinition>

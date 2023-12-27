@@ -1,0 +1,11 @@
+{
+  "sap.app":{
+    "id":"fcl/EA/EA-System",
+    "type":"application",
+    "title": "{{appTitle}}",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  }
+ 
+}

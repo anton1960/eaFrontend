@@ -1,0 +1,56 @@
+<c:FragmentDefinition xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:smartfield="sap.ui.comp.smartfield"
+	xmlns:smartform="sap.ui.comp.smartform">
+	<semantic:FullscreenPage id="page" title="{i18n>systemaddPageTitle}" showNavButton="true" navButtonPress="onNavBack">
+		<semantic:content>
+			<smartform:SmartForm id="form" editable="true" title="{i18n>systemAddformTitle}" class="sapUiResponsiveMargin">
+				<smartform:Group id="formGroup" label="{i18n>systemAddformGroupLabel}">
+					<smartform:GroupElement>
+						<smartfield:SmartField textLabel="ID" id="nameField" value="{ID}"/>
+						<smartfield:SmartField textLabel="SystemID" id="nameField3" value="{SystemID}"/>
+					</smartform:GroupElement>
+
+					<smartform:GroupElement>
+						<smartfield:SmartField textLabel="System" id="nameField1" value="{Systeme}"/>
+					</smartform:GroupElement>
+
+					<smartform:GroupElement>
+						<smartfield:SmartField textLabel="Description" id="supplierIDField" value="{SystemShortName}"/>
+					</smartform:GroupElement>
+					<smartform:GroupElement>
+						<smartfield:SmartField textLabel="S4Prio" id="priceField2" value="{s4Prio}"/>
+					</smartform:GroupElement>
+					<smartform:GroupElement>
+						<smartfield:SmartField textLabel="SystemGroupID" id="SyGroup" value="{System_GroupID_ID}"/>
+					</smartform:GroupElement>
+
+					<smartform:GroupElement label='SystemGroup'>
+						<ComboBox selectedKey="{System_Group}" items="{
+								path: '/EA_System_Group',
+								sorter: { path: 'System_Group' }
+		        	  		}">
+							<c:Item key="{System_Group}" text="{System_Group}" />
+						</ComboBox>
+					</smartform:GroupElement>
+					<smartform:GroupElement label='Status'>
+						<ComboBox selectedKey="{code}" items="{
+								path: '/LOV_Status',
+								sorter: { path: 'code' }
+		        	  		}">
+							<c:Item key="{code}" text="{code}" />
+						</ComboBox>
+					</smartform:GroupElement>
+
+				</smartform:Group>
+			</smartform:SmartForm>
+		</semantic:content>
+		<semantic:saveAction>
+			<semantic:SaveAction id="save" press="onSave"/>
+		</semantic:saveAction>
+		<semantic:cancelAction>
+			<semantic:CancelAction id="cancel" press="onCancel"/>
+		</semantic:cancelAction>
+	</semantic:FullscreenPage>
+</c:FragmentDefinition>

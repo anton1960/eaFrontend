@@ -1,0 +1,128 @@
+<c:FragmentDefinition xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:smartfield="sap.ui.comp.smartfield"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:upload="sap.m.upload"
+	xmlns:smartform="sap.ui.comp.smartform">
+	<semantic:FullscreenPage id="page" title="{i18n>systemaddPageTitle}" showNavButton="true" navButtonPress="onNavBack">
+		<semantic:content>
+
+
+			<smartform:SmartForm id="form" editable="true" title="{i18n>systemAddformTitle}" class="sapUiResponsiveMargin">
+				<smartform:layout>
+					<smartform:ColumnLayout columnsM="2" columnsL="3" columnsXL="4"/>
+				</smartform:layout>
+				<smartform:Group id="formGroup" label="{i18n>systemAddformGroupLabel}">
+
+					<smartform:GroupElement>
+						<smartfield:SmartField textLabel="ID" id="nameField" value="{ID}"/>
+						<smartfield:SmartField textLabel="SystemID" id="nameField3" value="{SystemID}"/>
+					</smartform:GroupElement>
+
+					<smartform:GroupElement>
+						<smartfield:SmartField textLabel="System" id="nameField1" value="{Systeme}"/>
+					</smartform:GroupElement>
+
+					<smartform:GroupElement>
+						<smartfield:SmartField textLabel="Description" id="supplierIDField" value="{SystemShortName}"/>
+					</smartform:GroupElement>
+					<smartform:GroupElement>
+						<smartfield:SmartField textLabel="S4Prio" id="priceField2" value="{s4Prio}"/>
+					</smartform:GroupElement>
+
+
+
+					<smartform:GroupElement label='SystemGroup'>
+						<ComboBox selectedKey="{System_Group}" items="{
+								path: '/EA_System_Group',
+								sorter: { path: 'System_Group' }
+		        	  		}">
+							<c:Item key="{System_Group}" text="{System_Group}" />
+						</ComboBox>
+					</smartform:GroupElement>
+					<smartform:GroupElement label='Status'>
+						<ComboBox selectedKey="{code}" items="{
+								path: '/LOV_Status',
+								sorter: { path: 'code' }
+		        	  		}">
+							<c:Item key="{code}" text="{code}" />
+						</ComboBox>
+					</smartform:GroupElement>
+
+				</smartform:Group>
+				<smartform:customToolbar>
+					<Toolbar height="3rem">
+
+						<ToolbarSpacer />
+						<Text text="Add Picture" />
+						<Button icon="sap-icon://settings" press=".onAddPicturePress" />
+
+					</Toolbar>
+				</smartform:customToolbar>
+			</smartform:SmartForm>
+			<Table id="suppliersTable1" items="{images}">
+				<columns>
+					<Column width="12em">
+						<Text text="ID"/>
+					</Column>
+					<Column>
+						<Text text="MediaType"/>
+					</Column>
+					<Column>
+						<Text text="FileName"/>
+					</Column>
+					<Column>
+						<Text text="Image"/>
+					</Column>
+
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press=".onSupplierPress">
+						<cells>
+							<ObjectIdentifier text="{ID}" title="{ID} "/>
+							<Text text="{mediaType}"/>
+							<Text text="{FileName}"/>
+							<Image id ='myImage' width='50px' press=".picturePress"  alt ="{FileName}" src="{__metadata/media_src}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		
+			
+			
+			  <upload:UploadSet id="uploadSet" instantUpload="false" uploadEnabled="true" showIcons="true" afterItemAdded="onAfterItemAdded" uploadCompleted="onUploadCompleted"  items="{images}">
+				<upload:toolbar>
+				</upload:toolbar>
+				<upload:items>
+					<upload:UploadSetItem fileName="{FileName}"
+        				Description ="{Description}" mediaType="{mediaType}" url="{__metadata/media_src}" thumbnailUrl="{
+								path: 'mediaType',
+								formatter: '.formatThumbnailUrl'
+							}" openPressed="onOpenPressed" removePressed="onRemovePressed">
+						<upload:attributes>
+							<ObjectAttribute title="Uploaded By" text="{createdBy}" active="false" />
+							<ObjectAttribute title="Description" text="{Description}" active="true" />
+							<ObjectAttribute title="Ref" text="{systems_ID}" active="false" />
+						</upload:attributes>
+					</upload:UploadSetItem>
+				</upload:items>
+			</upload:UploadSet>
+
+    
+		
+	
+
+
+
+		</semantic:content>
+		<semantic:saveAction>
+			<semantic:SaveAction id="save" press="onSave"/>
+		</semantic:saveAction>
+		<semantic:cancelAction>
+			<semantic:CancelAction id="cancel" press="onCancel"/>
+		</semantic:cancelAction>
+
+	</semantic:FullscreenPage>
+</c:FragmentDefinition>

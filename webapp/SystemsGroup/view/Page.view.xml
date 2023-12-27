@@ -1,0 +1,204 @@
+<mvc:View
+    height="100%"
+    controllerName="fcl/EA/EA-System.SystemsGroup.controller.Page"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m.upload"
+>
+    <m:Page showHeader="false">
+         <UploadSetwithTable
+            id="UploadSetTable"
+            sticky="ColumnHeaders,HeaderToolbar"
+            width="auto"
+            mode="MultiSelect"
+            fixedLayout="false"
+            inset="true"
+            autoPopinMode="true"
+            hiddenInPopin="None"
+            items="{path: '/EA_Images', templateShareable: false}"
+            maxFileNameLength="60"
+            uploadUrl="/uploadFiles"
+            multiple="true"
+            beforeInitiatingItemUpload="onBeforeInitiatingItemUpload"
+            beforeUploadStarts="onBeforeUploadStarts"
+            selectionChange="onSelectionChange"
+            itemRenamed="onDocumentRenamedSuccess"
+            uploadCompleted="onUploadCompleted" 
+            itemValidationHandler=".itemValidationCallback">
+            <!-- ToolBar for UploadSetwithTable -->
+            <headerToolbar>
+                <m:OverflowToolbar>
+                    <m:Title
+                        text="{setup>/count}"
+                        level="H2"
+                    />
+                    <m:ToolbarSpacer />
+                    <m:SearchField
+                        width="20%"
+                        liveChange=".onSearch"
+                    >
+                        <m:layoutData>
+                            <m:OverflowToolbarLayoutData
+                                priority="NeverOverflow"
+                            />
+                        </m:layoutData>
+                    </m:SearchField>
+                    <m:ToolbarSeparator />
+                    <ActionsPlaceholder placeholderFor="UploadButtonPlaceholder" />
+                    <m:Button
+                        id="downloadSelectedButton"
+                        text="Download"
+                        enabled="false"
+                        press="onDownloadFiles"
+                    />
+                    <m:MenuButton text="Add">
+                        <m:menu>
+                            <m:Menu>
+                                <m:MenuItem
+                                    text="URL"
+                                    press="openAddOrEditDialog"
+                                />
+                                <m:MenuItem
+                                    text="Document Without File"
+                                    press=".openDocumentWithoutFileDialog"
+                                />
+                            </m:Menu>
+                        </m:menu>
+                        <m:layoutData>
+                            <m:OverflowToolbarLayoutData
+                                priority="AlwaysOverflow"
+                            />
+                        </m:layoutData>
+                    </m:MenuButton>
+                    <m:Button
+                        id="removeDocumentButton"
+                        text="Remove"
+                        press=".onRemoveButtonFromMenuDocumentHandler"
+                        enabled="false"
+                    >
+                        <m:layoutData>
+                            <m:OverflowToolbarLayoutData
+                                priority="AlwaysOverflow"
+                            />
+                        </m:layoutData>
+                    </m:Button>
+                    <m:Button
+                        id="renameButton"
+                        enabled="false"
+                        press="onRenameDocument"
+                        text="Rename"
+                    >
+                        <m:layoutData>
+                            <m:OverflowToolbarLayoutData
+                                priority="AlwaysOverflow"
+                            />
+                        </m:layoutData>
+                    </m:Button>
+                    <m:Button
+                        id="editUrlButton"
+                        text="Edit URL"
+                        enabled="false"
+                        press="onEditUrl"
+                    >
+                        <m:layoutData>
+                            <m:OverflowToolbarLayoutData
+                                priority="AlwaysOverflow"
+                            />
+                        </m:layoutData>
+                    </m:Button>
+                </m:OverflowToolbar>
+            </headerToolbar>
+
+            <!-- Columns for UploadSetwithTable -->
+            <columns>
+                <Column id="FileName" importance="High">
+                    <header>
+                        <m:Label text="File Name" />
+                    </header>
+                </Column>
+                <Column id="id">
+                    <header>
+                        <m:Label text="ID" />
+                    </header>
+                </Column>
+                <Column id="size">
+                    <header>
+                        <m:Label text="File Size" />
+                    </header>
+                </Column>
+                <Column id="lastModified">
+                    <header>
+                        <m:Label text="Last Modified" />
+                    </header>
+                </Column>
+                <Column id="actionButton" importance="High" />
+                <Column id="action">
+                    <header>
+                        <m:Label text="action" />
+                    </header>
+                </Column>
+            </columns>
+
+            <!-- Items aggregation with template UploadSetwithTableItem definition for each row -->
+            <items>
+                <UploadSetwithTableItem
+                    fileName="{FileName}"
+                    mediaType="{mediaType}"
+                    url="{url}"
+                    highlight="{=${uploadState} === 'Complete' ? 'Indication05' : null }"
+                    previewable="{previewable}"
+                    fileSize="{size}"
+                >
+
+                <!-- Cells with cell template defining content for each column (cells and columns work with 1:1 mapping) -->
+                    <cells>
+                        <m:HBox>
+                            <m:Image
+                                src="{url}"
+                                class="sapMUSTItemImage sapMUSTItemIcon"
+                                visible="{= ${url} !== undefined}"
+                            />
+                            <core:Icon
+                                src="{parts: ['mediaType', 'FileName'], formatter: '.getIconSrc' }"
+                                color="white"
+                                visible="{= ${url} === undefined || ${url} === '' }"
+                                class="sapMUSTItemImage sapMUSTItemIcon"
+                            />
+                            <m:VBox
+                                class="sapUiTinyMargin sapUiSmallMarginBegin"
+                            >
+                                <m:Link
+                                    text="{FileName}"
+                                    press="openPreview"
+                                    class="sapUiTinyMarginBottom"
+                                />
+                                <m:Text text="{documentType}" class="sapUiTinyMarginTop" />
+                            </m:VBox>
+                        </m:HBox>
+                        <m:Text text="{ID}" />
+                        <m:Text
+                            text="{parts: ['size'], formatter: '.getFileSizeWithUnits'}"
+                        />
+                        <m:VBox>
+                            <m:Text text="{modifiedAt}" />
+                       </m:VBox>
+                        <m:Button
+                            class="sapUiTinyMarginBegin"
+                            type="Transparent"
+                            icon="sap-icon://decline"
+                            press="onRemoveHandler"
+                        />
+                        <m:Select
+                        items="{path: '/sizes', templateShareable: true}"
+                        selectedKey="{size}"
+                        visible="{= !!${size}}"
+                        forceSelection="false">
+                      <core:Item key="{key}" text="{value}"/>
+                </m:Select>
+                    </cells>
+                </UploadSetwithTableItem>
+            </items>
+        </UploadSetwithTable>
+    </m:Page>
+</mvc:View>
